@@ -1,22 +1,27 @@
-fun main(args: Array<String>) {
+fun main() {
     println(
         """На улице сегодня отличная погодка! 
         |Именно сегодня ты решил посетить кофейню, которую тебе рекомендовали давным давно.
         |Ты заходишь в EBANIY CLASHROYAL, и тебя встречает вежливый бариста.
         |Он говорит: "Здравствуйте, что для вас приготовим?"
-        |Ты смотришь на меню : капучино, латте, раф, американо.
-        |Что будешь брать?""".trimMargin()
+        |Представься.""".trimMargin()
+    )
+    val you = User("иисус", 100)
+    val urname = readLine()!!.toString().lowercase()
+    you.name = urname
+    println("""$urname! Твой счёт:${you.cash}.Что будешь брать?
+            |Ты смотришь на меню : капучино, латте, раф, американо.""".trimMargin()
     )
     var nameCoffee = listOf("капучино", "латте", "раф", "американо")
     var nameVolume = listOf("большой", "маленький")
     var nameDaNet = listOf("да", "нет")
-    var nameAdd = listOf("сахар", "сироп", "корица")
-    var nameName = listOf("Иисус")
     askForCoffee(nameCoffee)
     askForVolume(nameVolume)
     println("Вам что-нибудь добавить в кофе?")
     askForDaNet(nameDaNet)
-    askForName(nameName)
+    println("Все готово. С вашего счета будет списаны средства автоматически. Хорошего дня $urname!")
+    val minus = you.cash?.minus(60)
+    println("Ваш счет: $minus")
 }
 
 fun askForCoffee(nameCoffee: List<String>) {
@@ -57,15 +62,14 @@ fun askForAdd(nameAdd: List<String>) {
     }
 }
 
-fun askForName(nameName: List<String>) {
-    println("Ваш заказ будет готов в течении 2-3 минут. Назовите ваше имя")
-    var answer5 = readLine()?.lowercase()
-    if (answer5 in nameName) {
-        println("Отче наш! Да светится имя Твое!")
-    } else {
-        println("А это ты тот самый пидор! Катись отсюда нахуй!")
-    }
-}
-
+//fun askForName(nameName: List<String>) {
+//    println("Ваш заказ будет готов в течении 2-3 минут. Назовите ваше имя")
+//    var answer5 = readLine()?.lowercase()
+//    if (answer5 in nameName) {
+//        println("Отче наш! Да светится имя Твое!")
+//    } else {
+//        println("А это ты тот самый пидор! Катись отсюда нахуй!")
+//    }
+//}
 
 
