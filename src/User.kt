@@ -1,11 +1,23 @@
-class User (var name:String? = null, var cash:Int? = null)
+class User(var name: String? = null, var cash: Int? = null)
 
-open class Coffee(var size:String, var price:Int){
+enum class Size {
+    SMALL,
+    MEDIUM,
+    SEMI_MEDIUM,
+    SEMI_LARGE,
+    LARGE;
+}
+
+open class Coffee(size: Size, open var price: Int) {
     init {
-        if (size == "большой"){
-            price += 20
+        price = when (size) {
+            Size.SMALL -> price
+            Size.MEDIUM, Size.SEMI_MEDIUM, Size.SEMI_LARGE -> price + 20
+            Size.LARGE -> price + 40
         }
     }
 }
 
-class Capuccino:Coffee("lol",100)
+class Capuccino(var size: Size, override var price: Int) : Coffee(size, price)
+
+val cap = Capuccino(Size.SMALL, 100)
